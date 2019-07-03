@@ -1,21 +1,29 @@
 <?php
 	// соединяемся с базой
-	$conn = mysqli_connect("localhost", "root", "", "web4");
+	$conn = mysqli_connect("localhost", "root", "", "helpdesk_api");
+
+  if (mysqli_connect_errno()) {
+    printf("Не удалось подключиться: %s\n", mysqli_connect_error());
+    exit();
+}
+
 	// составляем запрос
-	$query = "SELECT * FROM users WHERE login='". $_POST['login']."' AND password='".md5($_POST['password'])."';";
+	$query = "SELECT * FROM users WHERE user_name='". $_POST['user_name']."' AND user_password='".md5($_POST['user_password'])."';";
+
 	$q = mysqli_query($conn, $query);
 	// найден ли кто-нибудь
-	$n = mysqli_num_rows($q);
+  $n = mysqli_num_rows($q);
+
 	if ($n!==0)
 	{
 		// стартуем сессию (можно не в начале файла, т.к. никакого вывода в браузер не было)
 		session_start();
 		$value=mysqli_fetch_array($q);
 		// записываем логин и емейл в сессию
-		$_SESSION['login']=$value['login'];
-		// редиректим (перенаправляем) на главную страницу сайта
-		$_SESSION['message']= 'Вы успешно авторизованы';
-		header("Location: index.php");
+		$_SESSION['user_name']=$value['user_name'];
+
+
+		header("Location: /userarea/userpage.php");
 	}
 	else
 	{

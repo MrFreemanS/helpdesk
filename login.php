@@ -1,8 +1,3 @@
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -18,14 +13,14 @@
 
 <div class="container">
   <h2>Авторизация</h2>
-  <form action="/autorize.php">
+  <form action="/autorize.php" method="POST">
     <div class="form-group">
       <label for="login">Имя пользователя:</label>
-      <input type="text" class="form-control" id="login" placeholder="Введите имя пользователя" name="login">
+      <input type="text" class="form-control" id="user_name" placeholder="Введите имя пользователя" name="user_name">
     </div>
     <div class="form-group">
       <label for="password">Пароль:</label>
-      <input type="password" class="form-control" id="password" placeholder="Введите пароль" name="password">
+      <input type="password" class="form-control" id="user_password" placeholder="Введите пароль" name="user_password">
     </div>
     <button type="submit" class="btn btn-success">Войти</button>
   </form>

@@ -1,8 +1,4 @@
 <?PHP
-					if ($_SESSION["login"]) {
-
-          }
-          else {
-            // code...
-          }
+header("Location: /login.php"); // если юзер не найден, то снова на страницу авторизации
+exit;
 ?>

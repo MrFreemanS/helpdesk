@@ -15,10 +15,10 @@
 
   <ul class="navbar-nav">
     <li class="nav-item">
-      <a class="nav-link" href="/userspage/index.php">Все заявки</a>
+      <a class="nav-link" href="/userarea/userpage.php">Все заявки</a>
     </li>
     <li class="nav-item active">
-      <a class="nav-link" href="/userspage/newreq.php">Создать новую заявку</a>
+      <a class="nav-link" href="/userarea/newreq.php">Создать новую заявку</a>
     </li>
   </ul>
 </nav>
