@@ -1,19 +1,13 @@
 <?php
 
 	// соединяемся с базой
-	require_once 'config.php';
-
-  if (mysqli_connect_errno()) {
-    printf("Не удалось подключиться: %s\n", mysqli_connect_error());
-    exit();
-}
-
+	require_once "../config.php";
 	// составляем запрос
 	$query = "SELECT * FROM users WHERE user_name='". $_POST['user_name']."' AND user_password='".md5($_POST['user_password'])."';";
 
 	$q = mysqli_query($conn, $query);
 	// найден ли кто-нибудь
-  $n = mysqli_num_rows($q);
+	$n = mysqli_num_rows($q);
 
 	if ($n!==0)
 	{
@@ -23,7 +17,7 @@
 		// записываем логин и емейл в сессию
 		$_SESSION['user_name']=$value['user_name'];
 
-		header("Location: userpage.php");
+		header("Location: /userpage.php");
 	}
 	else
 	{

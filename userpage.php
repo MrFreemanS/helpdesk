@@ -8,6 +8,12 @@ $query = "SELECT user_isadmin FROM users WHERE user_name='". $_SESSION['user_nam
 $result = mysqli_query($conn, $query);
 $result = mysqli_fetch_assoc($result);
 
+if($result['user_isadmin']==NULL)
+{
+    header("Location:login.php"); // если юзер админ, перекидываем в админку
+    exit();
+}
+
 if($result['user_isadmin']==1)
 {
     header("Location:adminpage.php"); // если юзер админ, перекидываем в админку

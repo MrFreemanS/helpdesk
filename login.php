@@ -26,7 +26,7 @@ if($_SESSION['user_name']!=NULL)
 
 <div class="container">
   <h2>Авторизация</h2>
-  <form action="/autorize.php" method="POST">
+  <form action="/functions/autorize.php" method="POST">
     <div class="form-group">
       <label for="login">Имя пользователя:</label>
       <input type="text" class="form-control" id="user_name" placeholder="Введите имя пользователя" name="user_name">

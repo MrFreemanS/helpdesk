@@ -35,14 +35,14 @@
     <h2>Новая заявка</h2>
     <br>
 
-<form>
+    <form action="/functions/new_req.php" method="POST">
     <div class="form-group">
         <label for="exampleFormControlInput1">Причина обращения</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Коротко о причине">
+        <input type="text" class="form-control" name="request_title" placeholder="Коротко о причине">
     </div>
     <div class="form-group">
         <label for="exampleFormControlSelect1">Приоритет</label>
-        <select class="form-control" id="exampleFormControlSelect1">
+        <select class="form-control" name="request_priority" >
             <option>1</option>
             <option>2</option>
             <option>3</option>
@@ -52,10 +52,10 @@
     </div>
     <div class="form-group">
         <label for="exampleFormControlTextarea1">Опишите подробно проблему</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+        <textarea class="form-control" id="exampleFormControlTextarea1" name="request_txt" rows="5"></textarea>
     </div>
-</form>
-</div>
-
+    <button type="submit" class="btn btn-success">отправить</button>
+    </form>
+    </div>
 </body>
 </html>
