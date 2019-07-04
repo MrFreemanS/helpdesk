@@ -1,3 +1,16 @@
+<?php
+session_start();
+
+if($_SESSION['user_name']!=NULL)
+{
+    require_once 'config.php';
+    header("Location: userpage.php"); //
+    exit();
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>

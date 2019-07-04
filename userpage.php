@@ -1,7 +1,24 @@
+<?PHP
+session_start();
+
+require_once 'config.php';
+
+
+$query = "SELECT user_isadmin FROM users WHERE user_name='". $_SESSION['user_name']."';";
+$result = mysqli_query($conn, $query);
+$result = mysqli_fetch_assoc($result);
+
+if($result['user_isadmin']==1)
+{
+    header("Location:adminpage.php"); // если юзер админ, перекидываем в админку
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Все заявки организации</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -15,11 +32,14 @@
 
   <ul class="navbar-nav">
     <li class="nav-item active">
-      <a class="nav-link" href="/userarea/userpage.php">Все заявки</a>
+      <a class="nav-link" href="/userpage.php">Все заявки</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/userarea/newreq.php">Создать новую заявку</a>
-    </li>
+      <li class="nav-item">
+          <a class="nav-link" href="/newreq.php">Создать новую заявку</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" href="/logout.php">Выйти</a>
+      </li>
   </ul>
 </nav>
 

@@ -1,7 +1,15 @@
+<?PHP
+session_start();
+
+require_once 'config.php';
+require_once 'admin_security_check.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Все заявки организации</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -15,11 +23,14 @@
 
   <ul class="navbar-nav">
     <li class="nav-item active">
-      <a class="nav-link" href="/userspage/index.php">Все заявки</a>
+      <a class="nav-link" href="/userpage.php">Все заявки</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="/userspage/newreq.php">Создать новую заявку</a>
+      <a class="nav-link" href="/newreq.php">Создать новую заявку</a>
     </li>
+      <li class="nav-item">
+          <a class="nav-link" href="/logout.php">Выйти</a>
+      </li>
   </ul>
 </nav>
 

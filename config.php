@@ -6,12 +6,12 @@
     $pass       = "";
     $database   = "helpdesk_api";
 
-    $connect = new mysqli($host, $user, $pass, $database);
+    $conn = new mysqli($host, $user, $pass, $database);
 
-    if (!$connect) {
+    if (!$conn) {
         die ("connection failed: " . mysqli_connect_error());
     } else {
-        $connect->set_charset('utf8');
+        $conn->set_charset('utf8');
     }
 
 ?>

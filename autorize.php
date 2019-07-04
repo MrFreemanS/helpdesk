@@ -1,6 +1,7 @@
 <?php
+
 	// соединяемся с базой
-	$conn = mysqli_connect("localhost", "root", "", "helpdesk_api");
+	require_once 'config.php';
 
   if (mysqli_connect_errno()) {
     printf("Не удалось подключиться: %s\n", mysqli_connect_error());
@@ -22,8 +23,7 @@
 		// записываем логин и емейл в сессию
 		$_SESSION['user_name']=$value['user_name'];
 
-
-		header("Location: /userarea/userpage.php");
+		header("Location: userpage.php");
 	}
 	else
 	{
