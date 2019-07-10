@@ -4,6 +4,7 @@ session_start();
 require_once 'config.php';
 require_once 'admin_security_check.php';
 
+//TODO брать это дублируется в проверке на админа
 
 $query = "SELECT user_isadmin FROM users WHERE user_name='". $_SESSION['user_name']."';";
 $result = mysqli_query($conn, $query);
@@ -20,21 +21,12 @@ if($result['user_isadmin']!=1)
     header("Location:userpage.php"); // если юзер админ, перекидываем в админку
     exit();
 }
-
-$query = "SELECT request_id,organization_name,request_status,request_priority,request_data,request_title,request_txt,request_user_id,users.user_name
-FROM (SELECT request_id,organization_name,request_status,request_priority,request_data,request_title,request_txt,request_user_id 
-FROM requests INNER JOIN organizations ON requests.request_organization_id=organizations.organization_id) AS tempteble
-INNER JOIN users
-ON tempteble.request_user_id=users.user_id";
-
-$result = mysqli_query($conn, $query);
-$result = mysqli_fetch_all($result, MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <title>Все заявки</title>
+    <title>Добавление</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -67,38 +59,59 @@ $result = mysqli_fetch_all($result, MYSQLI_ASSOC);
     </ul>
 </nav>
 
+<?php
+if ( $_GET["type"]== "org")
+{
+    ?>
+<br>
 <div class="container">
-    <br>
-    <h2>Все заявки пользователя</h2>
-    <br>
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th>ID запроса</th>
-            <th>Организация</th>
-            <th>Имя пользователя</th>
-            <th>Статус</th>
-            <th>Приоритет</th>
-            <th>Дата</th>
-            <th>Краткое описание</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php
-        foreach ($result as $request):
-            ?>
-            <tr>
-                <td><?=$request['request_id']?></td>
-                <td><?=$request['organization_name']?></td>
-                <td><?=$request['user_name']?></td>
-                <td><?=$request['request_status']?></td>
-                <td><?=$request['request_priority']?></td>
-                <td><?=$request['request_data']?></td>
-                <td><?=$request['request_title']?></td>
-            </tr>
-        <?PHP endforeach; ?>
-        </tbody>
-    </table>
+    <form action="">
+        <div class="form-group">
+            <label for="email">Email address:</label>
+            <input type="email" class="form-control" id="email">
+        </div>
+        <div class="form-group">
+            <label for="pwd">Password:</label>
+            <input type="password" class="form-control" id="pwd">
+        </div>
+        <div class="form-group form-check">
+            <label class="form-check-label">
+                <input class="form-check-input" type="checkbox"> Remember me
+            </label>
+        </div>
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
 </div>
+    <?php
+}
+?>
+
+<?php
+if ( $_GET["type"]== "user")
+{?>
+    <div class="container">
+        <br>
+        <form action="">
+            <div class="form-group">
+                <label for="email">Email address:</label>
+                <input type="email" class="form-control" id="email">
+            </div>
+            <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" class="form-control" id="pwd">
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox"> Remember me
+                </label>
+            </div>
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+    </div>
+    <?php
+}?>
+
+
 </body>
 </html>
+
